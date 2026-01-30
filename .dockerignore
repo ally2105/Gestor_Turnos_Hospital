@@ -1,0 +1,13 @@
+**/.dockerignore
+**/.env
+**/.git
+**/.gitignore
+**/.vs
+**/.vscode
+**/bin
+**/obj
+**/migrations
+**/*.db
+**/*.db-shm
+**/*.db-wal
+**/temptest
