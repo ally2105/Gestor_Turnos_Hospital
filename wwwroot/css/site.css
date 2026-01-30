@@ -1,0 +1,278 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Color Palette */
+    --primary-color: #4f46e5;
+    /* Indigo 600 */
+    --primary-hover: #4338ca;
+    /* Indigo 700 */
+    --secondary-color: #64748b;
+    /* Slate 500 */
+    --success-color: #10b981;
+    /* Emerald 500 */
+    --danger-color: #ef4444;
+    /* Red 500 */
+    --warning-color: #f59e0b;
+    /* Amber 500 */
+    --info-color: #3b82f6;
+    /* Blue 500 */
+    --light-bg: #f8fafc;
+    /* Slate 50 */
+    --dark-text: #1e293b;
+    /* Slate 800 */
+    --body-text: #334155;
+    /* Slate 700 */
+    --border-color: #e2e8f0;
+    /* Slate 200 */
+    --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --card-shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--light-bg);
+    color: var(--body-text);
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--dark-text);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+/* Navbar Personalizada */
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    padding: 0.75rem 1rem;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    color: var(--primary-color) !important;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: var(--body-text) !important;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Cards Modernas */
+.card {
+    border: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.card-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Botones Modernos */
+.btn {
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: white;
+    color: var(--body-text);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--light-bg);
+    border-color: var(--secondary-color);
+    color: var(--dark-text);
+}
+
+.btn-danger {
+    background-color: white;
+    /* Ghost style */
+    color: var(--danger-color);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.btn-danger:hover {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.btn-success {
+    background-color: var(--success-color);
+}
+
+/* Tablas Modernas */
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-striped-bg: rgba(0, 0, 0, 0.02);
+}
+
+.table thead th {
+    background-color: var(--light-bg);
+    color: var(--secondary-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border-color);
+    border-top: none;
+}
+
+.table td {
+    vertical-align: middle;
+    color: var(--body-text);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Utilidades */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+/* Turnos Específicos */
+.turno-actual-card {
+    border: 2px solid var(--primary-color);
+    background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+}
+
+.turno-numero-grande {
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    line-height: 1;
+}
+
+.caja-badge {
+    font-size: 1.5rem;
+    background-color: var(--dark-text);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+}
+
+/* Carnet Digital */
+.fs-xs {
+    font-size: 0.75rem;
+}
+
+.letter-spacing-2 {
+    letter-spacing: 2px;
+}
+
+.backdrop-blur {
+    backdrop-filter: blur(5px);
+}
+
+.blur-xl {
+    filter: blur(40px);
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    .credencial-card,
+    .credencial-card * {
+        visibility: visible;
+    }
+
+    .credencial-card {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 350px !important;
+        min-height: 500px !important;
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        background: white !important;
+        color: black !important;
+        padding: 20px;
+        border-radius: 10px;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .credencial-card .text-white,
+    .credencial-card .text-white-50 {
+        color: black !important;
+    }
+
+    .credencial-card .bg-white {
+        background-color: #f8f9fa !important;
+    }
+
+    .credencial-card .backdrop-blur {
+        background: none !important;
+        border: 1px solid #000 !important;
+    }
+
+    .blur-xl {
+        display: none;
+    }
+}
+
+/* Footer limpio */
+footer {
+    background-color: white;
+    padding: 2rem 0;
+    margin-top: 4rem;
+    border-top: 1px solid var(--border-color);
+}

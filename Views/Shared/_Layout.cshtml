@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Gestión de Turnos</title>
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- Icons via Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm fixed-top">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-2" asp-controller="Turnos" asp-action="Index">
+                    <i class="bi bi-calendar-check-fill text-primary"></i>
+                    <span>TuroGest</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-3">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Turnos" asp-action="Index">
+                                <i class="bi bi-speedometer2 me-1"></i> Panel
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Afiliados" asp-action="Index">
+                                <i class="bi bi-people me-1"></i> Afiliados
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Turnos" asp-action="Tv">
+                                <i class="bi bi-tv me-1"></i> TV
+                            </a>
+                        </li>
+                    </ul>
+                    <a class="btn btn-primary d-flex align-items-center gap-2 rounded-pill px-4" asp-controller="Turnos" asp-action="Solicitar">
+                        <i class="bi bi-plus-circle"></i> Nuevo Turno
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container py-5 mt-5">
+        <main role="main" class="pb-3 pt-4">
+            @if (TempData["MensajeExito"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show shadow-sm border-0" role="alert">
+                    <i class="bi bi-check-circle-fill me-2 text-success"></i> @TempData["MensajeExito"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (TempData["MensajeError"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show shadow-sm border-0" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill me-2 text-danger"></i> @TempData["MensajeError"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer text-muted border-top mt-auto py-4">
+        <div class="container text-center">
+            <p class="mb-0 small text-secondary">&copy; 2025 - <strong>TuroGest</strong> - Gestión Inteligente de Turnos</p>
+        </div>
+    </footer>
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

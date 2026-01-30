@@ -1,0 +1,99 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = GestionDeTurnos.Web
+build_property.RootNamespace = GestionDeTurnos.Web
+build_property.ProjectDir = /home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web
+build_property._RazorSourceGeneratorDebug = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/Afiliados/Carnet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWZpbGlhZG9zL0Nhcm5ldC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/Afiliados/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWZpbGlhZG9zL0NyZWFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/Afiliados/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWZpbGlhZG9zL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/Afiliados/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWZpbGlhZG9zL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/Afiliados/Registrar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWZpbGlhZG9zL1JlZ2lzdHJhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/Shared/_LayoutTv.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXRUdi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/Turnos/Confirmacion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHVybm9zL0NvbmZpcm1hY2lvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/Turnos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHVybm9zL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/Turnos/RequestTurn.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHVybm9zL1JlcXVlc3RUdXJuLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/Turnos/Solicitar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHVybm9zL1NvbGljaXRhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/Turnos/Tv.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHVybm9zL1R2LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/Coder/Escritorio/gestor_turnos/GestionDeTurnos.Web/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-x5iw9wg1hm

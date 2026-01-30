@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Turno Confirmado";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm text-center">
+                <div class="card-header">
+                    <h2>Turno Confirmado</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Su número de turno es:</p>
+                    <h1 class="display-1 text-primary">@ViewBag.Numero</h1>
+                    <p class="card-text">Por favor, espere a ser llamado.</p>
+                    <a asp-action="Solicitar" class="btn btn-secondary mt-3">Solicitar Otro Turno</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

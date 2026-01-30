@@ -1,0 +1,61 @@
+@model IEnumerable<GestionDeTurnos.Web.Models.Turn>
+
+@{
+    ViewData["Title"] = "Pantalla de Turnos";
+    Layout = "_LayoutTv";
+}
+
+<div class="container-fluid vh-100 d-flex flex-column p-4">
+    <div class="row flex-grow-1">
+        <div class="col-7 d-flex flex-column">
+            <div class="card shadow-sm flex-grow-1">
+                <div class="card-header bg-primary text-white text-center">
+                    <h2 class="h3 mb-0">Turno Actual</h2>
+                </div>
+                <div class="card-body d-flex justify-content-center align-items-center">
+                    @if (Model.Any(t => t.Status == "Llamado"))
+                    {
+                        <div class="text-center">
+                            <h1 class="display-1 fw-bold text-primary">@Model.First(t => t.Status == "Llamado").Number</h1>
+                            <p class="h2">Diríjase a la Caja @Model.First(t => t.Status == "Llamado").BoxId</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <h1 class="display-3 text-muted">Esperando llamado...</h1>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-5 d-flex flex-column">
+            <div class="card shadow-sm flex-grow-1">
+                <div class="card-header bg-light text-center">
+                    <h2 class="h4 mb-0">En Espera</h2>
+                </div>
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush h-100">
+                        @foreach (var t in Model.Where(t => t.Status == "Pendiente").OrderBy(t => t.Number).Take(5))
+                        {
+                            <li class="list-group-item text-center display-4 d-flex justify-content-center align-items-center flex-grow-1">@t.Number</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/turnoshub")
+            .build();
+
+        connection.on("ActualizarTurnos", () => {
+            location.reload();
+        });
+
+        connection.start().catch(err => console.error(err.toString()));
+    </script>
+}
