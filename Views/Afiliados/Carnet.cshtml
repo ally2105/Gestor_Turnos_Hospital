@@ -80,25 +80,25 @@
                      </div>
                 </div>
 
-                <!-- QR Placeholder (Visual) -->
-                <div class="mt-4 opacity-50">
-                    <i class="bi bi-qr-code-scan display-6"></i>
-                    <p class="small mt-1 text-white-50 mb-0">Escanear para validar</p>
+                <!-- QR Code -->
+                <div class="mt-4">
+                    @if (!string.IsNullOrEmpty(ViewBag.QRCodeImage))
+                    {
+                        <img src="@ViewBag.QRCodeImage" alt="QR Code" style="width: 100px; height: 100px;" />
+                        <p class="small mt-2 text-white-50 mb-0">Escanear para validar</p>
+                    }
+                    else
+                    {
+                        <i class="bi bi-qr-code-scan display-6"></i>
+                        <p class="small mt-1 text-white-50 mb-0">Escanear para validar</p>
+                    }
                 </div>
             </div>
-
-            <!-- Decorative shapes -->
-            <div class="position-absolute top-0 start-0 translate-middle p-5 bg-white opacity-10 rounded-circle blur-xl" style="width: 300px; height: 300px;"></div>
-            <div class="position-absolute bottom-0 end-0 translate-middle-x p-5 bg-black opacity-10 rounded-circle blur-xl" style="width: 200px; height: 200px;"></div>
-        </div>
 
         <div class="text-center mt-4 d-print-none">
             <button onclick="window.print()" class="btn btn-outline-primary rounded-pill px-4 me-2 shadow-sm">
                 <i class="bi bi-printer me-2"></i>Imprimir
             </button>
-            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary rounded-pill px-4 shadow-sm">
-                <i class="bi bi-pencil me-2"></i>Editar Datos
-            </a>
         </div>
     </div>
 </div>

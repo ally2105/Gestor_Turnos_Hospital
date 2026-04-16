@@ -2,6 +2,7 @@ using GestionDeTurnos.Web.Data;
 using GestionDeTurnos.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using QRCoder;
 
 namespace GestionDeTurnos.Web.Controllers
 {
@@ -40,7 +41,12 @@ namespace GestionDeTurnos.Web.Controllers
                 {
                     try
                     {
-                        var fotoBytes = Convert.FromBase64String(fotoData.Split(',')[1]);
+                        // Extraer la parte base64 (sin el header "data:image/jpeg;base64,")
+                        string base64String = fotoData.Contains(',') 
+                            ? fotoData.Split(',')[1] 
+                            : fotoData;
+                        
+                        var fotoBytes = Convert.FromBase64String(base64String);
                         var fileName = $"{Guid.NewGuid()}.jpg";
                         var fotosPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fotos");
                         
@@ -48,15 +54,19 @@ namespace GestionDeTurnos.Web.Controllers
                         if (!Directory.Exists(fotosPath))
                         {
                             Directory.CreateDirectory(fotosPath);
+                            _logger.LogInformation("Directorio de fotos creado: {FotosPath}", fotosPath);
                         }
 
                         var filePath = Path.Combine(fotosPath, fileName);
                         await System.IO.File.WriteAllBytesAsync(filePath, fotoBytes);
                         afiliado.PhotoPath = "/fotos/" + fileName;
+                        
+                        _logger.LogInformation("Foto guardada exitosamente: {FileName}, Tamaño: {FileSize} bytes", fileName, fotoBytes.Length);
                     }
                     catch (Exception ex)
                     {
-                        _logger.LogError(ex, "Error al guardar la foto del afiliado.");
+                        _logger.LogError(ex, "Error al guardar la foto del afiliado. Datos recibidos: {FotoDataLength} caracteres", 
+                            fotoData?.Length ?? 0);
                         ModelState.AddModelError("Photo", "Error al procesar la foto. Intente de nuevo.");
                         return View(afiliado);
                     }
@@ -66,6 +76,8 @@ namespace GestionDeTurnos.Web.Controllers
                 {
                     _context.Add(afiliado);
                     await _context.SaveChangesAsync();
+                    _logger.LogInformation("Afiliado {AfiliadoId} registrado correctamente con foto: {PhotoPath}", 
+                        afiliado.Id, afiliado.PhotoPath ?? "Sin foto");
                     TempData["MensajeExito"] = "Afiliado registrado correctamente.";
                     return RedirectToAction(nameof(Index));
                 }
@@ -98,6 +110,20 @@ namespace GestionDeTurnos.Web.Controllers
             {
                 return NotFound();
             }
+
+            // Generar QR con datos del afiliado
+            string qrData = $"ID:{afiliado.Id}|DNI:{afiliado.DocumentNumber}|NOMBRE:{afiliado.FirstName} {afiliado.LastName}";
+            using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+            {
+                QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrData, QRCodeGenerator.ECCLevel.Q);
+                using (PngByteQRCode qrCode = new PngByteQRCode(qrCodeData))
+                {
+                    byte[] qrImageBytes = qrCode.GetGraphic(20);
+                    string qrBase64 = Convert.ToBase64String(qrImageBytes);
+                    ViewBag.QRCodeImage = $"data:image/png;base64,{qrBase64}";
+                }
+            }
+
             return View(afiliado);
         }
 
@@ -143,17 +169,29 @@ namespace GestionDeTurnos.Web.Controllers
                         if (!string.IsNullOrEmpty(fotoData))
                         {
                             try {
-                                var fotoBytes = Convert.FromBase64String(fotoData.Split(',')[1]);
+                                // Extraer la parte base64 (sin el header "data:image/jpeg;base64,")
+                                string base64String = fotoData.Contains(',') 
+                                    ? fotoData.Split(',')[1] 
+                                    : fotoData;
+                                
+                                var fotoBytes = Convert.FromBase64String(base64String);
                                 var fileName = $"{Guid.NewGuid()}.jpg";
                                 var fotosPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "fotos");
                                 
-                                if (!Directory.Exists(fotosPath)) Directory.CreateDirectory(fotosPath);
+                                if (!Directory.Exists(fotosPath)) 
+                                {
+                                    Directory.CreateDirectory(fotosPath);
+                                    _logger.LogInformation("Directorio de fotos creado: {FotosPath}", fotosPath);
+                                }
 
                                 var filePath = Path.Combine(fotosPath, fileName);
                                 await System.IO.File.WriteAllBytesAsync(filePath, fotoBytes);
                                 affiliate.PhotoPath = "/fotos/" + fileName;
+                                _logger.LogInformation("Foto actualizada para afiliado {AfiliadoId}: {FileName}", id, fileName);
                             } catch (Exception ex) {
-                                _logger.LogError(ex, "Error actualizando foto");
+                                _logger.LogError(ex, "Error actualizando foto para afiliado {AfiliadoId}", id);
+                                ModelState.AddModelError("Photo", "Error al procesar la foto. Intente de nuevo.");
+                                return View(affiliate);
                             }
                         }
                         else 
@@ -165,6 +203,7 @@ namespace GestionDeTurnos.Web.Controllers
 
                     _context.Update(affiliate);
                     await _context.SaveChangesAsync();
+                    _logger.LogInformation("Afiliado {AfiliadoId} actualizado correctamente", id);
                     TempData["MensajeExito"] = "Afiliado actualizado correctamente.";
                 }
                 catch (DbUpdateConcurrencyException)

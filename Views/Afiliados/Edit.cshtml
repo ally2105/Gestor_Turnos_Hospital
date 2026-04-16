@@ -25,7 +25,7 @@
                 <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-person-lines-fill me-2"></i>Datos Personales</h6>
             </div>
             <div class="card-body p-4">
-                <form asp-action="Edit">
+                <form asp-action="Edit" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-4 rounded-3" role="alert"></div>
                     <input type="hidden" asp-for="Id" />
                     <input type="hidden" asp-for="CreatedAt" />
@@ -202,10 +202,12 @@
             canvas.height = video.videoHeight;
             context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
             
-            let dataURL = canvas.toDataURL('image/jpeg');
+            let dataURL = canvas.toDataURL('image/jpeg', 0.95);
             fotoDataInput.value = dataURL;
             fotoPreview.src = dataURL;
             previewSection.style.display = 'block';
+            
+            console.log("Foto capturada, tamaño: " + dataURL.length + " bytes");
         });
 
         borrarFotoBtn.addEventListener('click', (e) => {
@@ -213,6 +215,15 @@
             fotoDataInput.value = "";
             fotoPreview.src = "";
             previewSection.style.display = 'none';
+        });
+
+        // Validar antes de submit
+        document.querySelector("form").addEventListener("submit", function(e) {
+            if (fotoDataInput.value) {
+                console.log("Nueva foto será enviada con el formulario");
+            } else {
+                console.log("Sin cambios en foto, manteniendo la imagen actual");
+            }
         });
     </script>
 }

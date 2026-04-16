@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GestionDeTurnos.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f47a9a3cbb4ed037dc80be758932fe9f655b1f42")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5bf43f69796d10c58dee1c4c61667b11b703fdf1")]
 [assembly: System.Reflection.AssemblyProductAttribute("GestionDeTurnos.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GestionDeTurnos.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

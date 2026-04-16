@@ -25,7 +25,7 @@
                 <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-person-lines-fill me-2"></i>Datos Personales</h6>
             </div>
             <div class="card-body p-4">
-                <form asp-action="Crear" method="post">
+                <form asp-action="Crear" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-4 rounded-3" role="alert"></div>
                     <input type="hidden" id="fotoData" name="fotoData" />
 
@@ -138,19 +138,26 @@
             }).catch(function(err) {
                 console.error("Error: " + err);
                 alert("No se pudo acceder a la cámara. Revisa los permisos.");
+                camaraContainer.style.display = 'none';
             });
         }
 
         // Capturar foto
         capturarBtn.addEventListener("click", function (e) {
             e.preventDefault();
+            if (!video.srcObject) {
+                alert("La cámara no está disponible.");
+                return;
+            }
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
             context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
             
-            let dataURL = canvas.toDataURL('image/jpeg');
+            let dataURL = canvas.toDataURL('image/jpeg', 0.95);
             fotoDataInput.value = dataURL;
             fotoPreview.src = dataURL;
+            
+            console.log("Foto capturada, tamaño: " + dataURL.length + " bytes");
             
             fotoPreviewContainer.style.display = 'block';
             camaraContainer.style.display = 'none';
@@ -165,6 +172,15 @@
             fotoPreviewContainer.style.display = 'none';
             camaraContainer.style.display = 'block';
             capturarBtn.style.display = 'block';
+        });
+
+        // Validar que se envíe la foto antes de submit (opcional)
+        document.querySelector("form").addEventListener("submit", function(e) {
+            if (fotoDataInput.value) {
+                console.log("Foto será enviada con el formulario");
+            } else {
+                console.log("Sin foto, creando afiliado sin imagen");
+            }
         });
     </script>
 }
