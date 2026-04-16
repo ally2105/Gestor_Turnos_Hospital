@@ -5,10 +5,29 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 🔹 Configurar conexión a la base de datos (MySQL en este caso)
+// 🔹 Configurar conexión a la base de datos
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var isDevelopment = builder.Environment.IsDevelopment();
+var isProduction = builder.Environment.IsProduction();
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 0))));
+{
+    // Usar SQLite en desarrollo y Docker (para evitar problemas de compatibilidad con Pomelo)
+    if (isDevelopment || isProduction)
+    {
+        var dbPath = "/app/data/gestiondeturnos.db";
+        if (isDevelopment)
+        {
+            dbPath = "gestiondeturnos.db";
+        }
+        options.UseSqlite($"Data Source={dbPath}");
+    }
+    else
+    {
+        // MySQL para otros ambientes si es necesario
+        options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 0)));
+    }
+});
 
 // 🔹 Inyectar servicios para que puedan ser usados en los controladores
 builder.Services.AddScoped<TurnService>();

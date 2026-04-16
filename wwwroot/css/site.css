@@ -185,17 +185,147 @@ a:hover {
     background-color: var(--primary-color) !important;
 }
 
-/* Turnos Específicos */
-.turno-actual-card {
-    border: 2px solid var(--primary-color);
-    background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
 }
 
-.turno-numero-grande {
-    font-size: 5rem;
+.hero-section .display-3 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.hero-section .lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+/* Features Section */
+.features-section {
+    background-color: var(--light-bg);
+}
+
+.feature-card {
+    padding: 2rem 1rem;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+    box-shadow: var(--card-shadow);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.feature-card i {
+    transition: transform 0.3s ease;
+}
+
+/* Solicitar Section */
+.solicitar-section {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+    position: relative;
+}
+
+.solicitar-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.solicitar-section .card {
+    position: relative;
+    z-index: 1;
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #6366f1 100%);
+}
+
+.btn-xl {
+    font-size: 1.25rem;
+    padding: 0.75rem 1.5rem;
+}
+
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* TV Display Styles */
+.tv-container {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+}
+
+.turno-numero-display {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #7c3aed 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+}
+
+.numero {
+    font-size: 8rem;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    line-height: 1;
+    display: block;
+}
+
+.caja-info {
+    margin-top: 2rem;
+    animation: pulse 2s infinite;
+}
+
+.espera-list {
+    height: 100%;
+}
+
+.espera-item {
+    background: linear-gradient(90deg, #f8fafc 0%, #e2e8f0 100%);
+    transition: all 0.3s ease;
+}
+
+.espera-item:hover {
+    background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e1 100%);
+    transform: scale(1.02);
+}
+
+.numero-espera {
+    font-size: 4rem;
     font-weight: 800;
     color: var(--primary-color);
-    line-height: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.animate-pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
 }
 
 .caja-badge {

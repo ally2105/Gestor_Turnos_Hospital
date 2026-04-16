@@ -2,16 +2,36 @@
     ViewData["Title"] = "Solicitar Turno";
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow-sm">
-                <div class="card-body text-center">
-                    <h1 class="card-title display-4">Bienvenido</h1>
-                    <p class="card-text">Presione el botón para obtener un nuevo turno.</p>
-                    <form asp-action="SolicitarTurno" method="post">
-                        <button type="submit" class="btn btn-primary btn-lg">Solicitar Turno</button>
-                    </form>
+@{
+    ViewData["Title"] = "Solicitar Turno";
+}
+
+<div class="solicitar-section min-vh-100 d-flex align-items-center py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                    <div class="card-header bg-gradient-primary text-white text-center py-4">
+                        <i class="bi bi-ticket-perforated display-4 mb-3"></i>
+                        <h1 class="h2 fw-bold mb-0">Solicitar Nuevo Turno</h1>
+                    </div>
+                    <div class="card-body text-center p-5">
+                        <p class="lead text-muted mb-4">
+                            Obtenga su número de turno de manera rápida y sencilla. Solo presione el botón y espere su llamado.
+                        </p>
+                        <form asp-action="SolicitarTurno" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-primary btn-xl rounded-pill px-5 py-3 shadow-lg hover-lift">
+                                <i class="bi bi-plus-circle-fill me-2 fs-4"></i>
+                                <span class="fw-bold">Solicitar Turno</span>
+                            </button>
+                        </form>
+                        <div class="mt-4">
+                            <small class="text-muted">
+                                <i class="bi bi-info-circle me-1"></i>
+                                Su turno será asignado automáticamente
+                            </small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -5,40 +5,62 @@
     Layout = "_LayoutTv";
 }
 
-<div class="container-fluid vh-100 d-flex flex-column p-4">
+<div class="tv-container vh-100 d-flex flex-column p-4 bg-dark">
     <div class="row flex-grow-1">
-        <div class="col-7 d-flex flex-column">
-            <div class="card shadow-sm flex-grow-1">
-                <div class="card-header bg-primary text-white text-center">
-                    <h2 class="h3 mb-0">Turno Actual</h2>
+        <div class="col-7 d-flex flex-column pe-3">
+            <div class="card shadow-lg border-0 flex-grow-1 bg-white rounded-4 overflow-hidden">
+                <div class="card-header bg-gradient-primary text-white text-center py-4">
+                    <i class="bi bi-bullseye display-6 mb-2"></i>
+                    <h2 class="h2 mb-0 fw-bold">TURNO ACTUAL</h2>
                 </div>
-                <div class="card-body d-flex justify-content-center align-items-center">
+                <div class="card-body d-flex justify-content-center align-items-center p-5">
                     @if (Model.Any(t => t.Status == "Llamado"))
                     {
-                        <div class="text-center">
-                            <h1 class="display-1 fw-bold text-primary">@Model.First(t => t.Status == "Llamado").Number</h1>
-                            <p class="h2">Diríjase a la Caja @Model.First(t => t.Status == "Llamado").BoxId</p>
+                        var currentTurn = Model.First(t => t.Status == "Llamado");
+                        <div class="text-center animate-pulse">
+                            <div class="turno-numero-display mb-4">
+                                <span class="numero">@currentTurn.Number</span>
+                            </div>
+                            <div class="caja-info">
+                                <i class="bi bi-arrow-right-circle-fill text-primary me-2 fs-1"></i>
+                                <span class="h1 fw-bold text-primary">CAJA @currentTurn.BoxId</span>
+                            </div>
                         </div>
                     }
                     else
                     {
-                        <h1 class="display-3 text-muted">Esperando llamado...</h1>
+                        <div class="text-center text-muted">
+                            <i class="bi bi-clock-history display-1 mb-3"></i>
+                            <h1 class="display-4 fw-light">Esperando llamado...</h1>
+                        </div>
                     }
                 </div>
             </div>
         </div>
-        <div class="col-5 d-flex flex-column">
-            <div class="card shadow-sm flex-grow-1">
-                <div class="card-header bg-light text-center">
-                    <h2 class="h4 mb-0">En Espera</h2>
+        <div class="col-5 d-flex flex-column ps-3">
+            <div class="card shadow-lg border-0 flex-grow-1 bg-white rounded-4 overflow-hidden">
+                <div class="card-header bg-light text-center py-4">
+                    <i class="bi bi-hourglass-split text-warning display-6 mb-2"></i>
+                    <h2 class="h3 mb-0 fw-bold text-dark">EN ESPERA</h2>
                 </div>
                 <div class="card-body p-0">
-                    <ul class="list-group list-group-flush h-100">
-                        @foreach (var t in Model.Where(t => t.Status == "Pendiente").OrderBy(t => t.Number).Take(5))
+                    <div class="espera-list">
+                        @foreach (var t in Model.Where(t => t.Status == "Pendiente").OrderBy(t => t.Number).Take(8))
                         {
-                            <li class="list-group-item text-center display-4 d-flex justify-content-center align-items-center flex-grow-1">@t.Number</li>
+                            <div class="espera-item d-flex justify-content-center align-items-center py-4 border-bottom">
+                                <span class="numero-espera">@t.Number</span>
+                            </div>
                         }
-                    </ul>
+                        @if (!Model.Where(t => t.Status == "Pendiente").Any())
+                        {
+                            <div class="d-flex justify-content-center align-items-center h-100 text-muted">
+                                <div class="text-center">
+                                    <i class="bi bi-check-circle-fill display-4 mb-3 text-success"></i>
+                                    <h4>No hay turnos en espera</h4>
+                                </div>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

@@ -4,56 +4,110 @@
     ViewData["Title"] = "Panel de Turnos";
 }
 
-<div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="display-4">Panel de Funcionario</h1>
-        <div>
-            <a asp-action="Siguiente" class="btn btn-success btn-lg">➡️ Llamar Siguiente</a>
-            <a asp-action="Reiniciar" class="btn btn-danger btn-lg">🔄 Reiniciar Turnos</a>
+<div class="container-fluid py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="display-5 fw-bold text-primary mb-2">Panel de Funcionario</h1>
+                    <p class="text-muted mb-0">Gestiona los turnos del hospital en tiempo real</p>
+                </div>
+                <div class="d-flex gap-3">
+                    <a asp-action="Siguiente" class="btn btn-success btn-lg px-4 py-3 rounded-pill shadow-sm">
+                        <i class="bi bi-skip-forward-circle me-2"></i>Llamar Siguiente
+                    </a>
+                    <a asp-action="Reiniciar" class="btn btn-outline-danger btn-lg px-4 py-3 rounded-pill shadow-sm">
+                        <i class="bi bi-arrow-clockwise me-2"></i>Reiniciar Turnos
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
-    @if (TempData["MensajeError"] != null)
-    {
-        <div class="alert alert-warning" role="alert">
-            @TempData["MensajeError"]
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white border-0 py-3">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-list-check text-primary me-2 fs-5"></i>
+                        <h2 class="h4 mb-0 fw-bold">Historial de Turnos</h2>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="border-0 fw-semibold text-uppercase small">Número</th>
+                                    <th class="border-0 fw-semibold text-uppercase small">Estado</th>
+                                    <th class="border-0 fw-semibold text-uppercase small">Caja</th>
+                                    <th class="border-0 fw-semibold text-uppercase small">Creado</th>
+                                    <th class="border-0 fw-semibold text-uppercase small">Llamado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-turnos">
+                                @foreach (var t in Model)
+                                {
+                                    <tr class="align-middle">
+                                        <td>
+                                            <span class="badge bg-primary rounded-pill px-3 py-2 fs-6 fw-bold">@t.Number</span>
+                                        </td>
+                                        <td>
+                                            @if (t.Status == "Llamado")
+                                            {
+                                                <span class="badge bg-success rounded-pill px-3 py-2">
+                                                    <i class="bi bi-check-circle me-1"></i>@t.Status
+                                                </span>
+                                            }
+                                            else if (t.Status == "Pendiente")
+                                            {
+                                                <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+                                                    <i class="bi bi-clock me-1"></i>@t.Status
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-secondary rounded-pill px-3 py-2">@t.Status</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <span class="fw-semibold">@t.BoxId</span>
+                                        </td>
+                                        <td class="text-muted small">@t.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</td>
+                                        <td class="text-muted small">@(t.CalledAt?.ToLocalTime().ToString("dd/MM/yyyy HH:mm") ?? "-")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-    }
-    @if (TempData["MensajeExito"] != null)
-    {
-        <div class="alert alert-success" role="alert">
-            @TempData["MensajeExito"]
-        </div>
-    }
-
-    <div class="card shadow-sm">
-        <div class="card-header">
-            <h2 class="h5 mb-0">Historial de Turnos</h2>
-        </div>
-        <div class="card-body p-0">
-            <table class="table table-striped table-hover mb-0">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">Número</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Caja</th>
-                        <th scope="col">Creado</th>
-                        <th scope="col">Llamado</th>
-                    </tr>
-                </thead>
-                <tbody id="tabla-turnos">
-                    @foreach (var t in Model)
-                    {
-                        <tr>
-                            <td><span class="badge bg-primary rounded-pill fs-6">@t.Number</span></td>
-                            <td>@t.Status</td>
-                            <td>@t.BoxId</td>
-                            <td>@t.CreatedAt.ToLocalTime()</td>
-                            <td>@t.CalledAt?.ToLocalTime()</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-white border-0 py-3">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-bar-chart text-info me-2 fs-5"></i>
+                        <h3 class="h5 mb-0 fw-bold">Estadísticas</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <div class="p-3">
+                                <h4 class="text-primary fw-bold">@Model.Count(t => t.Status == "Pendiente")</h4>
+                                <p class="text-muted small mb-0">En Espera</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3">
+                                <h4 class="text-success fw-bold">@Model.Count(t => t.Status == "Llamado")</h4>
+                                <p class="text-muted small mb-0">Atendidos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

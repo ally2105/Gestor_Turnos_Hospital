@@ -1,9 +1,52 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <h1>HOLA ALISONNN</h1>
+<div class="hero-section text-center py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="display-3 fw-bold text-primary mb-4">Bienvenido a TuroGest</h1>
+                <p class="lead text-muted mb-5 fs-4">
+                    Sistema de gestión inteligente de turnos para hospitales. Simplifica la atención al paciente con tecnología moderna.
+                </p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="@Url.Action("Solicitar", "Turnos")" class="btn btn-primary btn-lg px-4 py-3 rounded-pill">
+                        <i class="bi bi-plus-circle me-2"></i>Solicitar Turno
+                    </a>
+                    <a href="@Url.Action("Index", "Turnos")" class="btn btn-outline-primary btn-lg px-4 py-3 rounded-pill">
+                        <i class="bi bi-speedometer2 me-2"></i>Panel de Control
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+
+<div class="features-section py-5 bg-light">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card h-100">
+                    <i class="bi bi-clock-history display-4 text-primary mb-3"></i>
+                    <h3 class="h4">Gestión Eficiente</h3>
+                    <p class="text-muted">Administra turnos en tiempo real con actualizaciones instantáneas.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card h-100">
+                    <i class="bi bi-people-fill display-4 text-success mb-3"></i>
+                    <h3 class="h4">Atención al Paciente</h3>
+                    <p class="text-muted">Mejora la experiencia del paciente con un sistema intuitivo.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card h-100">
+                    <i class="bi bi-tv display-4 text-info mb-3"></i>
+                    <h3 class="h4">Pantalla de Turnos</h3>
+                    <p class="text-muted">Visualización clara en pantallas grandes para fácil seguimiento.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
